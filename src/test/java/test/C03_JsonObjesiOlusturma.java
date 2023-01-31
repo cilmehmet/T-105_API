@@ -4,18 +4,17 @@ import org.json.JSONObject;
 import org.junit.Test;
 
 public class C03_JsonObjesiOlusturma {
-
-    /*
+     /*
     Asagidaki JSON Objesini olusturup konsolda yazdirin.
-     {
+
+    {
         "title":"Ahmet",
         "body":"Merhaba",
         "userId":1
-      }
-        */
-
+    }
+    */
     @Test
-    public void jsonObje01 () {
+    public void jsonObje01(){
 
         JSONObject ilkJsonObje = new JSONObject();
 
@@ -27,7 +26,7 @@ public class C03_JsonObjesiOlusturma {
     }
 
     @Test
-    public void jsonObje02 () {
+    public void jsonObje02(){
 
         /*
                 {
@@ -42,7 +41,6 @@ public class C03_JsonObjesiOlusturma {
                   "lastname":"Brown"
                   }
          */
-
         JSONObject innerJsonObje = new JSONObject();
 
         innerJsonObje.put("checkin","2018-01-01");
@@ -58,5 +56,6 @@ public class C03_JsonObjesiOlusturma {
         body.put("lastname","Brown");
 
         System.out.println(body);
+
     }
 }

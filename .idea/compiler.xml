@@ -6,7 +6,7 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="Y-105_API" />
+        <module name="T105_APICalismalari" />
       </profile>
     </annotationProcessing>
   </component>

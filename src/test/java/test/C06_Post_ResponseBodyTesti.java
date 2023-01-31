@@ -9,16 +9,19 @@ import org.junit.Test;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.*;
 
-public class C06_Post_ResponseBodyTesti {
 
-    /*  https://jsonplaceholder.typicode.com/posts
+public class C06_Post_ResponseBodyTesti {
+     /*  https://jsonplaceholder.typicode.com/posts
          url’ine asagidaki body ile bir POST request gonderdigimizde
+
         {
         "title":"API",
         "body":"API ogrenmek ne guzel",
         "userId":10,
         }
+
         donen Response’un,
+
         status code’unun 201,
         ve content type’inin application/json
         ve Response Body'sindeki,
@@ -29,69 +32,78 @@ public class C06_Post_ResponseBodyTesti {
       */
 
     @Test
-    public void post01 () {
+    public void post01(){
 
         // 1 - URL ve Body hazirla
+
         String url = "https://jsonplaceholder.typicode.com/posts";
-        JSONObject redBody = new JSONObject();
 
-        redBody.put("title","API");
-        redBody.put("body","API ogrenmek ne guzel");
-        redBody.put("userId",10);
+        JSONObject reqBody = new JSONObject();
 
-        System.out.println(redBody);
+        reqBody.put( "title","API");
+        reqBody.put( "body","API ogrenmek ne guzel");
+        reqBody.put( "userId",10);
 
-        // 2 - Soruda isteniyorsa Expected Data hazirla
+        System.out.println(reqBody);
+
+        // 2 - Expected Data hazirla
+
         // 3 - Response'i kaydet
-        Response response = given().contentType(ContentType.JSON).
-                                    when().
-                                           body(redBody.toString()).
+
+        Response response = given().
+                                    contentType(ContentType.JSON).
+                            when().
+                                    body(reqBody.toString()).
                                     post(url);
+
         response.prettyPrint();
 
         // 4 - Assertion
+
         response.
                 then().
                 assertThat().
                 statusCode(201).
                 contentType("application/json").
-                body("title", Matchers.equalTo("API")).
-                body("userId", lessThan(100)).
-                body("API",Matchers.containsString("API"));
+                body("title", equalTo("API")).
+                body("userId",lessThan(100)).
+                body("body",Matchers.containsString("API"));
 
-        response.prettyPrint();
     }
 
     @Test
-    public void post02 () {
+    public void post02(){
 
         // 1 - URL ve Body hazirla
+
         String url = "https://jsonplaceholder.typicode.com/posts";
-        JSONObject redBody = new JSONObject();
 
-        redBody.put("title","API");
-        redBody.put("body","API ogrenmek ne guzel");
-        redBody.put("userId",10);
+        JSONObject reqBody = new JSONObject();
 
-        System.out.println(redBody);
+        reqBody.put( "title","API");
+        reqBody.put( "body","API ogrenmek ne guzel");
+        reqBody.put( "userId",10);
 
-        // 2 - Soruda isteniyorsa Expected Data hazirla
+        // 2 - Expected Data hazirla
+
         // 3 - Response'i kaydet
-        Response response = given().contentType(ContentType.JSON).
+
+        Response response = given().
+                contentType(ContentType.JSON).
                 when().
-                body(redBody.toString()).
+                body(reqBody.toString()).
                 post(url);
-        response.prettyPrint();
 
         // 4 - Assertion
+
         response.
                 then().
                 assertThat().
                 statusCode(201).
                 contentType("application/json").
                 body("title", equalTo("API"),
-                "userId",lessThan(100));
+                "userId", lessThan(100),
+                "body", containsString("API"));
 
-        response.prettyPrint();
     }
 }
