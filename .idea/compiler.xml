@@ -7,6 +7,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="T105_APICalismalari" />
+        <module name="T-105_API" />
       </profile>
     </annotationProcessing>
   </component>
